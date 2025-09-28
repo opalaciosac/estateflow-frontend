@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Ajusta la URL según donde corra tu Azure Function local
+// URL = Azure Function in local
 export default defineConfig({
   plugins: [react()],
   server: {
