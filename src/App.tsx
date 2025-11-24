@@ -83,7 +83,7 @@ function App() {
           </FormControl>
 
           <Button type="submit" variant="contained" fullWidth>
-            Enviar
+            Submit
           </Button>
         </form>
         <Typography color="text.secondary" sx={{ mt: 2 }} align="center">

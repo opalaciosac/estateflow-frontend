@@ -1,12 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// URL = Azure Function in local
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "http://localhost:7071", 
+      "/api": {
+        target: "https://estateflow-f7hsgbgmezbyfjfx.eastus-01.azurewebsites.net",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, "/api"), 
+      },
     },
   },
 });
