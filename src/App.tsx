@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 
 function App() {
-  // 🟢 Debug line to confirm injected value
+  // Debug line to confirm injected value
   console.log("API_BASE at runtime:", __API_BASE__);
 
   const [email, setEmail] = useState("");
@@ -46,10 +46,10 @@ function App() {
     const body = { files: uploadedFiles, email, output };
 
     try {
-      // 🟦 Use the constant defined in vite.config.ts
+      // Use the constant defined in vite.config.ts
       const API_BASE = __API_BASE__ as string;
 
-      // 🟢 Use absolute or relative path depending on environment
+      // Use absolute or relative path depending on environment
       const url = API_BASE
         ? `${API_BASE}/api/summary`
         : "/api/summary";

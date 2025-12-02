@@ -10,11 +10,11 @@ export default defineConfig(({ mode }) => {
   // Always use an *absolute* path
   const root = path.resolve(__dirname);
 
-  console.log("🔍 VITE ROOT:", root);
+  console.log("VITE ROOT:", root);
 
   const env = loadEnv(mode, root, "VITE_");
 
-  console.log("🔍 Loaded env in vite.config:", env);
+  console.log("Loaded env in vite.config:", env);
 
   return {
     plugins: [react()],
