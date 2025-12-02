@@ -9,16 +9,19 @@ import {
   Select,
   FormControl,
   InputLabel,
-  CircularProgress,   
+  CircularProgress,
 } from "@mui/material";
 
 function App() {
+  // 🟢 Debug line to confirm injected value
+  console.log("API_BASE at runtime:", __API_BASE__);
+
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState<FileList | null>(null);
   const [message, setMessage] = useState("");
   const [output, setOutput] =
     useState<"summary-only" | "summary-and-flowchart">("summary-only");
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +46,15 @@ function App() {
     const body = { files: uploadedFiles, email, output };
 
     try {
-      const res = await fetch("/api/summary", {
+      // 🟦 Use the constant defined in vite.config.ts
+      const API_BASE = __API_BASE__ as string;
+
+      // 🟢 Use absolute or relative path depending on environment
+      const url = API_BASE
+        ? `${API_BASE}/api/summary`
+        : "/api/summary";
+
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -132,11 +143,7 @@ function App() {
           </Button>
         </form>
 
-        <Typography
-          color="text.secondary"
-          sx={{ mt: 2 }}
-          align="center"
-        >
+        <Typography color="text.secondary" sx={{ mt: 2 }} align="center">
           {loading
             ? "Diagram is being generated, please wait…"
             : message}
